@@ -1,0 +1,68 @@
+{
+  "name": "Error Workflow Trigger",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        -80
+      ],
+      "id": "2b68ee06-d85e-4cdb-972c-16610581f3a6",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "sendTo": "ghimiresafalta87@gmail.com",
+        "subject": "=Workflow {{ $json.workflow.name }} failed",
+        "emailType": "text",
+        "message": "=Workflow {{ $json.workflow.name }} is broken\nDate and Time: {{ $now }}\nLast Node:{{ $json.execution.lastNodeExecuted }}\nDetails: {{ $json.execution.error.message }}\n\n\nDamn!!!!\n\nErro rStack: {{ $json.execution.error.stack }}",
+        "options": {
+          "appendAttribution": true
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        -32,
+        -80
+      ],
+      "id": "c25635b1-c79e-40dc-b02f-59445c98ca42",
+      "name": "Send a message",
+      "webhookId": "0e4dda6d-67b0-4353-8517-55985aa165f2",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ORfNeSxN0ycvoq2l",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "943a01d2-4132-4910-8e12-5e80aa595383",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "3e6f588034f19ac47dbeaf0c183095a3de33c8cca11d577cb22941238d3cd4b9"
+  },
+  "id": "ynxd3DY5oYsaCdE1",
+  "tags": []
+}
